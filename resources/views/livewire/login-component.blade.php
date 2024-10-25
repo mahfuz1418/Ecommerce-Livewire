@@ -24,7 +24,7 @@
                                             @csrf
                                             <div class="form-group">
                                                 <input type="email" id="email" name="email"
-                                                    value="{{ old('email') }}">
+                                                    value="{{ old('email') }}" placeholder="Email">
                                                 @if ($errors->has('email'))
                                                     <div class="text-danger mt-2">
                                                         {{ $errors->first('email') }}
@@ -33,7 +33,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <input id="password" type="password" name="password">
+                                                <input id="password" type="password" name="password" placeholder="Password">
                                                 @if ($errors->has('password'))
                                                     <div class="text-danger mt-2">
                                                         {{ $errors->first('password') }}
