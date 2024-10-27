@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Admin\AdminDashboard;
+use App\Livewire\CartComponent;
+use App\Livewire\CarticonComponent;
+use App\Livewire\CheckoutComponent;
 use App\Livewire\Customer\CustomerDashboard;
 use App\Livewire\HomeComponent;
+use App\Livewire\ProductDetailsComponent;
+use App\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -14,14 +19,17 @@ use Illuminate\Support\Facades\Route;
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', HomeComponent::class)->name('home');
+Route::get('/shop', ShopComponent::class)->name('shop');
+Route::get('/cart', CartComponent::class)->name('cart');
+Route::get('/product-details', ProductDetailsComponent::class)->name('product.details');
+Route::get('/checkout', CheckoutComponent::class)->name('checkout');
 
 // Admin Dashboard
-// Route::middleware(['auth', 'admin'])->group(function (){
-//     Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
-// });
-    Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard')->middleware('admin');
+Route::middleware([ 'admin'])->group(function (){
+    Route::get('admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
+});
 
-// User Dashboard
+// Customer Dashboard
 Route::middleware(['auth'])->group(function (){
     Route::get('customer/dashboard', CustomerDashboard::class)->name('customer.dashboard');
 });
