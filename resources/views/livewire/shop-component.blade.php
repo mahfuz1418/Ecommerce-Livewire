@@ -63,7 +63,7 @@
                                     <div class="product-cart-wrap mb-30">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
-                                                <a href="{{ route('product.details', ['slug' => $product->slug]) }}" wire:navigate >
+                                                <a href="{{ route('product.details', ['slug' => $product->slug]) }}" >
                                                     <img class="default-img" src="{{ $product->image }}" alt="">
                                                     <img class="hover-img" src="{{ $product->image }}" alt="">
                                                 </a>

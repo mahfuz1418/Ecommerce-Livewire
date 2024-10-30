@@ -20,37 +20,18 @@
                                         <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                                         <!-- MAIN SLIDES -->
                                         <div class="product-image-slider">
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-2.jpg" alt="product image">
-                                            </figure>
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-1.jpg" alt="product image">
-                                            </figure>
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-3.jpg" alt="product image">
-                                            </figure>
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-4.jpg" alt="product image">
-                                            </figure>
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-5.jpg" alt="product image">
-                                            </figure>
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-6.jpg" alt="product image">
-                                            </figure>
-                                            <figure class="border-radius-10">
-                                                <img src="assets/imgs/shop/product-16-7.jpg" alt="product image">
-                                            </figure>
+                                            @foreach ($images as $image)
+                                                <figure class="border-radius-10">
+                                                    <img src="{{ $image }}" alt="product image">
+                                                </figure>
+                                            @endforeach
+
                                         </div>
                                         <!-- THUMBNAILS -->
                                         <div class="slider-nav-thumbnails pl-15 pr-15">
-                                            <div><img src="assets/imgs/shop/thumbnail-3.jpg" alt="product image"></div>
-                                            <div><img src="assets/imgs/shop/thumbnail-4.jpg" alt="product image"></div>
-                                            <div><img src="assets/imgs/shop/thumbnail-5.jpg" alt="product image"></div>
-                                            <div><img src="assets/imgs/shop/thumbnail-6.jpg" alt="product image"></div>
-                                            <div><img src="assets/imgs/shop/thumbnail-7.jpg" alt="product image"></div>
-                                            <div><img src="assets/imgs/shop/thumbnail-8.jpg" alt="product image"></div>
-                                            <div><img src="assets/imgs/shop/thumbnail-9.jpg" alt="product image"></div>
+                                            @foreach ($images as $image)
+                                                <div><img src="{{ $image }}"alt="product image"></div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <!-- End Gallery -->
@@ -58,16 +39,16 @@
                                         <ul class="text-grey-5 d-inline-block">
                                             <li><strong class="mr-10">Share this:</strong></li>
                                             <li class="social-facebook"><a href="#"><img
-                                                        src="assets/imgs/theme/icons/icon-facebook.svg"
+                                                        src="{{ asset('assets') }}/imgs/theme/icons/icon-facebook.svg"
                                                         alt=""></a></li>
                                             <li class="social-twitter"> <a href="#"><img
-                                                        src="assets/imgs/theme/icons/icon-twitter.svg"
+                                                        src="{{ asset('assets') }}/imgs/theme/icons/icon-twitter.svg"
                                                         alt=""></a></li>
                                             <li class="social-instagram"><a href="#"><img
-                                                        src="assets/imgs/theme/icons/icon-instagram.svg"
+                                                        src="{{ asset('assets') }}/imgs/theme/icons/icon-instagram.svg"
                                                         alt=""></a></li>
                                             <li class="social-linkedin"><a href="#"><img
-                                                        src="assets/imgs/theme/icons/icon-pinterest.svg"
+                                                        src="{{ asset('assets') }}/imgs/theme/icons/icon-pinterest.svg"
                                                         alt=""></a></li>
                                         </ul>
                                     </div>
@@ -113,30 +94,20 @@
                                         <div class="attr-detail attr-color mb-15">
                                             <strong class="mr-10">Color</strong>
                                             <ul class="list-filter color-filter">
-                                                <li><a href="#" data-color="Red"><span
-                                                            class="product-color-red"></span></a></li>
-                                                <li><a href="#" data-color="Yellow"><span
-                                                            class="product-color-yellow"></span></a></li>
-                                                <li class="active"><a href="#" data-color="White"><span
-                                                            class="product-color-white"></span></a></li>
-                                                <li><a href="#" data-color="Orange"><span
-                                                            class="product-color-orange"></span></a></li>
-                                                <li><a href="#" data-color="Cyan"><span
-                                                            class="product-color-cyan"></span></a></li>
-                                                <li><a href="#" data-color="Green"><span
-                                                            class="product-color-green"></span></a></li>
-                                                <li><a href="#" data-color="Purple"><span
-                                                            class="product-color-purple"></span></a></li>
+                                                @foreach (json_decode($product_details->colors) as $color)
+                                                    <li><a href="#" data-color=""><span
+                                                                class="product-color-{{ $color }}"></span></a>
+                                                    </li>
+                                                @endforeach
+
                                             </ul>
                                         </div>
                                         <div class="attr-detail attr-size">
                                             <strong class="mr-10">Size</strong>
                                             <ul class="list-filter size-filter font-small">
-                                                <li><a href="#">S</a></li>
-                                                <li class="active"><a href="#">M</a></li>
-                                                <li><a href="#">L</a></li>
-                                                <li><a href="#">XL</a></li>
-                                                <li><a href="#">XXL</a></li>
+                                                @foreach (json_decode($product_details->sizes) as $size)
+                                                    <li ><a href="#">{{ $size }}</a></li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
@@ -154,7 +125,8 @@
                                                         'id' => $product_details->id,
                                                         'name' => $product_details->name,
                                                         'price' => $product_details->selling_price,
-                                                    ]) }})">Add to cart</button>
+                                                    ]) }})">Add
+                                                    to cart</button>
                                                 <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                                     href="wishlist.php"><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Compare" class="action-btn hover-up"
@@ -294,7 +266,7 @@
                                                         <div class="single-comment justify-content-between d-flex">
                                                             <div class="user justify-content-between d-flex">
                                                                 <div class="thumb text-center">
-                                                                    <img src="assets/imgs/page/avatar-6.jpg"
+                                                                    <img src="{{ asset('assets') }}/imgs/page/avatar-6.jpg"
                                                                         alt="">
                                                                     <h6><a href="#">Jacky Chan</a></h6>
                                                                     <p class="font-xxs">Since 2012</p>
@@ -322,7 +294,7 @@
                                                         <div class="single-comment justify-content-between d-flex">
                                                             <div class="user justify-content-between d-flex">
                                                                 <div class="thumb text-center">
-                                                                    <img src="assets/imgs/page/avatar-7.jpg"
+                                                                    <img src="{{ asset('assets') }}/imgs/page/avatar-7.jpg"
                                                                         alt="">
                                                                     <h6><a href="#">Ana Rosie</a></h6>
                                                                     <p class="font-xxs">Since 2008</p>
@@ -349,7 +321,7 @@
                                                         <div class="single-comment justify-content-between d-flex">
                                                             <div class="user justify-content-between d-flex">
                                                                 <div class="thumb text-center">
-                                                                    <img src="assets/imgs/page/avatar-8.jpg"
+                                                                    <img src="{{ asset('assets') }}/imgs/page/avatar-8.jpg"
                                                                         alt="">
                                                                     <h6><a href="#">Steven Keny</a></h6>
                                                                     <p class="font-xxs">Since 2010</p>

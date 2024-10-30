@@ -41,6 +41,14 @@ class ProductSeeder extends Seeder
 
         ];
 
+        $colors = [
+            'red', 'white', 'red', 'orange', 'yellow'
+        ];
+
+        $sizes = [
+            'XL', 'XXL', 'L', 'M', 'S'
+        ];
+
         for ($i = 1; $i <= 100; $i++) { // Generate 10 products
             Product::create([
                 'name' => $faker->words(3, true),
@@ -51,7 +59,9 @@ class ProductSeeder extends Seeder
                 'regular_price' => $faker->randomFloat(2, 10, 100),
                 'selling_price' => $faker->randomFloat(2, 5, 90),
                 'image' => $image[rand(0,10)],
-                'images' => json_encode([$faker->imageUrl(640, 480, 'products'), $faker->imageUrl(640, 480, 'products')]),
+                'images' => json_encode($image),
+                'sizes' => json_encode($sizes),
+                'colors' => json_encode($colors),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

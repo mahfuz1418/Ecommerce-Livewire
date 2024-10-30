@@ -21,7 +21,9 @@ return new class extends Migration
             $table->decimal('regular_price', 10, 2);
             $table->decimal('selling_price', 10, 2);
             $table->string('image')->nullable();
-            $table->string('images')->nullable();
+            $table->longText('images')->nullable();
+            $table->string('sizes')->nullable();
+            $table->string('colors')->nullable();
             $table->timestamps();
         });
     }

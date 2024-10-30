@@ -31,6 +31,11 @@ class ProductDetailsComponent extends Component
     public function render()
     {
         $product_details = Product::where('slug', $this->slug)->first();
+
+        $image = $product_details->image;
+        $images = json_decode($product_details->images);
+        array_splice($images, 0, 0, $image);
+
         $related_products = Product::where('category_id', $product_details->category_id)->get();
         $categories = Category::latest()->get();
         $nproducts = Product::latest()->take(3)->get();
@@ -41,6 +46,7 @@ class ProductDetailsComponent extends Component
             'related_products' => $related_products,
             'categories' => $categories,
             'nproducts' => $nproducts,
+            'images' => $images,
         ]);
     }
 }
