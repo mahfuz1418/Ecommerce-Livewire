@@ -13,6 +13,8 @@ class ShopComponent extends Component
 
     public $perPage = 12;
     public $orderBy = 'Default Sorting';
+    public $min_price = 0;
+    public $max_price = 1000;
 
     public function productPerPage($perPage)
     {
@@ -27,13 +29,13 @@ class ShopComponent extends Component
     public function render()
     {
         if ($this->orderBy === 'Price: Low to High') {
-            $products = Product::orderBy('selling_price', 'asc')->paginate($this->perPage);
+            $products = Product::whereBetween('selling_price', [$this->min_price, $this->max_price])->orderBy('selling_price', 'asc')->paginate($this->perPage);
         } elseif ($this->orderBy === 'Price: High to Low') {
-            $products = Product::orderBy('selling_price', 'desc')->paginate($this->perPage);
+            $products = Product::whereBetween('selling_price', [$this->min_price, $this->max_price])->orderBy('selling_price', 'desc')->paginate($this->perPage);
         } elseif ($this->orderBy === 'Newest Product') {
-            $products = Product::orderBy('created_at', 'desc')->paginate($this->perPage);
+            $products = Product::whereBetween('selling_price', [$this->min_price, $this->max_price])->orderBy('created_at', 'desc')->paginate($this->perPage);
         } else {
-            $products = Product::paginate($this->perPage);
+            $products = Product::whereBetween('selling_price', [$this->min_price, $this->max_price])->paginate($this->perPage);
         }
 
         $categories = Category::latest()->get();

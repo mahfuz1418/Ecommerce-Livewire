@@ -547,12 +547,7 @@
                 </div>
             </div>
             <div class="mobile-header-content-area">
-                <div class="mobile-search search-style-3 mobile-header-border">
-                    <form action="#">
-                        <input type="text" placeholder="Search for items…">
-                        <button type="submit"><i class="fi-rs-search"></i></button>
-                    </form>
-                </div>
+                @livewire('header-search-component')
                 <div class="mobile-menu-wrap mobile-header-border">
                     <div class="main-categori-wrap mobile-header-border">
                         <a class="categori-button-active-2" href="#">
@@ -816,6 +811,8 @@
     <!-- Template  JS -->
     <script src="{{ asset('assets') }}/js/main.js?v=3.3"></script>
     <script src="{{ asset('assets') }}/js/shop.js?v=3.3"></script>
+    @livewireScripts
+    @stack('script')
 </body>
 
 </html>

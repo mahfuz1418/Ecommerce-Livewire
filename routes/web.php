@@ -4,10 +4,12 @@ use App\Http\Controllers\ProfileController;
 use App\Livewire\Admin\AdminDashboard;
 use App\Livewire\CartComponent;
 use App\Livewire\CarticonComponent;
+use App\Livewire\CategoryComponent;
 use App\Livewire\CheckoutComponent;
 use App\Livewire\Customer\CustomerDashboard;
 use App\Livewire\HomeComponent;
 use App\Livewire\ProductDetailsComponent;
+use App\Livewire\SearchComponent;
 use App\Livewire\ShopComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,9 @@ Route::get('/shop', ShopComponent::class)->name('shop');
 Route::get('/cart', CartComponent::class)->name('cart');
 Route::get('/product-details/{slug}', ProductDetailsComponent::class)->name('product.details');
 Route::get('/checkout', CheckoutComponent::class)->name('checkout');
+Route::get('/checkout', CheckoutComponent::class)->name('checkout');
+Route::get('/product-category/{slug}', CategoryComponent::class)->name('product.category');
+Route::get('/search', SearchComponent::class)->name('search');
 
 // Admin Dashboard
 Route::middleware([ 'admin'])->group(function (){
